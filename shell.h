@@ -17,4 +17,6 @@
 #define SEPARATORS "\n"
 #define PROMPT "$"
 
+int _putchar(char prnchar);
+
 #endif
