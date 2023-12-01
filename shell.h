@@ -16,3 +16,5 @@
 #define COMMAND_SEPARATOR ";\n"
 #define SEPARATORS "\n"
 #define PROMPT "$"
+
+#endif
