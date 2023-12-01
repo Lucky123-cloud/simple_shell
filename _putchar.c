@@ -10,6 +10,6 @@
 
 int _putchar(char prnchar)
 {
-	return (write(STDIN_FILENO, &prnchar, 1));
+	return (write(STDIN_FILENO, &prnchar, sizeof(int)));
 }
 
