@@ -33,9 +33,9 @@ void _ErrorHandling(appData_t *prndata, int messagecode)
 	_puts(": ");
 	while (i < 9)
 	{
-		if (messagecode == (errors + i)->code)
+		if (messagecode == (error + i)->code)
 		{
-			_puts((errors + i)->msg);
+			_puts((error + i)->msg);
 			_puts(": ");
 			_puts(prndata->arguments[1]);
 		}
