@@ -10,7 +10,8 @@
 #include <sys/stat.h>
 
 #define PROMPT char * "#"
-void prompt(void);
+void _prompt(void);
 int _putchar(char prnchar);
+int _puts(char *prnstr);
 
 #endif
