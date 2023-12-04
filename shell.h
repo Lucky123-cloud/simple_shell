@@ -156,9 +156,9 @@ char *_strdup(char *prnstr);
 int _strlen(char *prmStr);
 char *_strstr(char *prmHaystack, char *prmNeedle, int prmBegin);
 char **_strtow(char *prnstr, char *prnSep, char *prnEscSep);
-void _unsetenv(appData_t *prmData, char *prmName);
+void _unsetenv(appData_t *prndata, char *prnname);
 void _unsetenvHelp(void);
-void _unsetEnvironment(appData_t *prmData);
+void _unsetEnvironment(appData_t *prndata);
 char *_which(appData_t *prmData);
 int _wordNumber(char *prmString, char *prmSeparators);
 
