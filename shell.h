@@ -123,7 +123,7 @@ environment_t *_getEnvNodeAtIndex(
 	environment_t *prmHead,
 	unsigned int prmIndex
 );
-environment_t *_getLastEnvNode(environment_t *prmHeadNode);
+environment_t *_getLastEnvNode(environment_t *prnHeadNode);
 void _getline(appData_t *prndata);
 char *_getword(char *prmGlobal, int prmOffset, int prmSize);
 void _help(appData_t *prmData);
