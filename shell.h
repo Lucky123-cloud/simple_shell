@@ -91,7 +91,7 @@ void *_calloc(unsigned int prmNumber, unsigned int prmSize);
 void _cdHelp(void);
 void _changeDirectory(appData_t *prnd);
 void _changeToAnyDirectory(appData_t *prmData, char *prmCurrentDirectory);
-void _changeToHomeDirectory(appData_t *prmData, char *prmCurrentDirectory);
+void _changeToHomeDirectory(appData_t *prnd, char *prnCurrentDir);
 void _changeToPreviousDirectory(appData_t *prmData, char *prmCurrentDirectory);
 int _checkEndCharacter(char *prmString);
 int _checkEscapeSeparators(char prmChar, char *prmEscapeSeparators);
