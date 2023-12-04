@@ -10,7 +10,7 @@ int _atoi(char *prnstr)
 	int sizes = _strlen(prnstr), loop;
 	unsigned int c = 0;
 
-	for (loop = 0; loop < sizes; loop++;
+	for (loop = 0; loop < sizes; loop++)
 	{
 		now = prnstr[loop];
 
@@ -20,7 +20,7 @@ int _atoi(char *prnstr)
 			c += now - 48;
 		}
 		else if (now == '-')
-			a = -sign;
+			a = - a;
 		else if (c > 0)
 			break;
 	}
