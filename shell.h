@@ -89,7 +89,7 @@ environment_t *_addEnvNodeEnd(
 void _addingword(char *prnword, int *prnindex, char **prnarray);
 void *_calloc(unsigned int prmNumber, unsigned int prmSize);
 void _cdHelp(void);
-void _changeDirectory(appData_t *prmData);
+void _changeDirectory(appData_t *prnd);
 void _changeToAnyDirectory(appData_t *prmData, char *prmCurrentDirectory);
 void _changeToHomeDirectory(appData_t *prmData, char *prmCurrentDirectory);
 void _changeToPreviousDirectory(appData_t *prmData, char *prmCurrentDirectory);
