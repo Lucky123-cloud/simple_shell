@@ -84,9 +84,9 @@ typedef struct customCommand_s
 
 environment_t *_addEnvNodeEnd(
 	environment_t **prmHeadNode,
-	char *prmGlobal
+	char *prngbl
 );
-void _addWord(char *prmWord, int *prmIndex, char **prmArray);
+void _addingword(char *prnword, int *prnindex, char **prnarray);
 int _atoi(char *prmString);
 void *_calloc(unsigned int prmNumber, unsigned int prmSize);
 void _cdHelp(void);
@@ -97,8 +97,8 @@ void _changeToPreviousDirectory(appData_t *prmData, char *prmCurrentDirectory);
 int _checkEndCharacter(char *prmString);
 int _checkEscapeSeparators(char prmChar, char *prmEscapeSeparators);
 int _checkSeparators(char prmChar, char *prmSeparators);
-char *_cleanString(char *prmString);
-environment_t *_createEnvNode(char *prmGlobal);
+char *_cleanstr(char *prnstr);
+environment_t *_createEnvNode(char *prngbl);
 void _ctrlD(int prnsignal __attribute__((unused)));
 void _defaultHelp(char *prmCommand);
 int _deleteEnvNode(environment_t *prmHead, char *prmName);
@@ -110,14 +110,14 @@ void _execCommand(appData_t *prmData);
 void _exitStatus(appData_t *prmData);
 void _exitHelp(void);
 void _Freeappdata(appData_t *prndata);
-void _freeCharDoublePointer(char **prmPtr);
+void _freeCharDoublePointer(char **prnptr);
 void _FreeEnvironList(environment_t *prnHeadNode);
 char *_generateAbsolutePath(char *prmPath, char *prmCommandName);
-char *_generateEnvGlobal(char *prmName, char *prmValue);
+char *_generateEnvGlobal(char *prnname, char *prnval);
 void (*_getCustomFunction(char *prmCommand))(appData_t *);
-environment_t *_getenv(environment_t *prmEnviron, char *prmName);
-char *_getenvname(char *prmVariable);
-char *_getenvvalue(char *prmVariable);
+environment_t *_getenv_var(environment_t *prnenviron, char *prnname);
+char *_getenvname(char *prnvar);
+char *_getenvvalue(char *prnvar);
 int _getEnvIndex(environment_t *prmHead, char *prmName);
 environment_t *_getEnvNodeAtIndex(
 	environment_t *prmHead,
@@ -128,7 +128,7 @@ void _getline(appData_t *prndata);
 char *_getword(char *prmGlobal, int prmOffset, int prmSize);
 void _help(appData_t *prmData);
 void _helpHelp(void);
-int _inArray(char prmChar, char *prmArray);
+int _inArray(char prnchar, char *prnarray);
 appData_t *_initData(char **prmArgv);
 void _initEnvData(appData_t *prmData);
 int _isdigit(char prmChar);
@@ -143,19 +143,19 @@ void _printenv(environment_t *prmEnviron);
 int _putchar(char prmChar);
 int _puts(char *prmStr);
 void *_realloc(void *prmPtr, unsigned int prmOldSize, unsigned int prmNewSize);
-void _setenv(environment_t *prmEnviron, char *prmName, char *prmValue, int prmOverwrite);
+void _setenv_val(environment_t *prnenviron, char *prnname, char *prnval, int prmOverwrite);
 void _setenvHelp(void);
 void _setEnvironment(appData_t *prmData);
 char *_strcat(char *prmDest, char *prmSrc);
-int _strcmp(char *prmString1, char *prmString2);
-char *_strcpy(char *prmDest, char *prmSrc);
-char *_strconcat(char *prmString1, char *prmString2);
-char *_strncpy(char *prmDest, char *prmSrc, int prmLimit);
+int _strcmp(char *prnstr1, char *prnstr2);
+char *_strcpy(char *prndest, char *prnsrc);
+char *_strconcat(char *prnstr1, char *prnstr2);
+char *_strncpy(char *prndest, char *prnsrc, int prmLimit);
 unsigned int _strcspn(char *prmString, char *prmDeny);
-char *_strdup(char *prmString);
+char *_strdup(char *prnstr);
 int _strlen(char *prmStr);
 char *_strstr(char *prmHaystack, char *prmNeedle, int prmBegin);
-char **_strtow(char *prmString, char *prmSeparators, char *prmEscapeSeparators);
+char **_strtow(char *prnstr, char *prnSep, char *prnEscSep);
 void _unsetenv(appData_t *prmData, char *prmName);
 void _unsetenvHelp(void);
 void _unsetEnvironment(appData_t *prmData);
