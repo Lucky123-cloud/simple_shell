@@ -129,7 +129,7 @@ void _help(appData_t *prmData);
 void _helpHelp(void);
 int _inArray(char prnchar, char *prnarray);
 appData_t *_initData(char **prmArgv);
-void _initEnvData(appData_t *prmData);
+void _initEnvData(appData_t *prndata);
 int _isdigit(char prmChar);
 int _isNumber(char *s);
 char *_itoa(int prmNumber);
