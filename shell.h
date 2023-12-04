@@ -87,7 +87,6 @@ environment_t *_addEnvNodeEnd(
 	char *prngbl
 );
 void _addingword(char *prnword, int *prnindex, char **prnarray);
-int _atoi(char *prmString);
 void *_calloc(unsigned int prmNumber, unsigned int prmSize);
 void _cdHelp(void);
 void _changeDirectory(appData_t *prmData);
@@ -142,7 +141,7 @@ char **_parsingPathEnvironment(appData_t *prmData);
 void _printenv(environment_t *prmEnviron);
 int _putchar(char prmChar);
 int _puts(char *prmStr);
-void *_realloc(void *prmPtr, unsigned int prmOldSize, unsigned int prmNewSize);
+void *_realloc(void *prnpointer, unsigned int prnsizeA, unsigned int prnsizeB);
 void _setenv_val(environment_t *prnenviron, char *prnname, char *prnval, int prmOverwrite);
 void _setenvHelp(void);
 void _setEnvironment(appData_t *prmData);
@@ -161,5 +160,5 @@ void _unsetenvHelp(void);
 void _unsetEnvironment(appData_t *prndata);
 char *_which(appData_t *prmData);
 int _wordNumber(char *prmString, char *prmSeparators);
-
+int _atoi(char *prnstr);
 #endif
