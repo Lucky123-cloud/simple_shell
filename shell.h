@@ -132,7 +132,7 @@ appData_t *_initData(char **prmArgv);
 void _initEnvData(appData_t *prndata);
 int _isdigit(char prmChar);
 int _isNumber(char *s);
-char *_itoa(int prmNumber);
+char *_itoa(int num);
 int _listEnvLen(environment_t *prnHead);
 char *_memcpy(char *prndest, char *prnsrc, unsigned int prnlimit);
 char *_memset(char *prmString, char prmCharacter, unsigned int prmLimit);
