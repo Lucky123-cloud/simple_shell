@@ -111,7 +111,7 @@ void _exitHelp(void);
 void _Freeappdata(appData_t *prndata);
 void _freeCharDoublePointer(char **prnptr);
 void _FreeEnvironList(environment_t *prnHeadNode);
-char *_generateAbsolutePath(char *prmPath, char *prmCommandName);
+char *_generateAbsolutePath(char *prnpath, char *prnCommandName);
 char *_generateEnvGlobal(char *prnname, char *prnval);
 void (*_getCustomFunction(char *prmCommand))(appData_t *);
 environment_t *_getenv_var(environment_t *prnenviron, char *prnname);
