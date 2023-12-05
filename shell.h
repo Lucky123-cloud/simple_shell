@@ -89,7 +89,7 @@ environment_t *_addEnvNodeEnd(
 void _addingword(char *prnword, int *prnindex, char **prnarray);
 void *_calloc(unsigned int prmNumber, unsigned int prmSize);
 void _cdHelp(void);
-void _changeDirectory(appData_t *prnd);
+void _cd(appData_t *prnd);
 void _changeToAnyDirectory(appData_t *prmData, char *prmCurrentDirectory);
 void _changeToHomeDirectory(appData_t *prnd, char *prnCurrentDir);
 void _cdprevDir(appData_t *prnd, char *prnCurrentDir);
@@ -113,7 +113,7 @@ void _freeCharDoublePointer(char **prnptr);
 void _FreeEnvironList(environment_t *prnHeadNode);
 char *_generateAbsolutePath(char *prnpath, char *prnCommandName);
 char *_generateEnvGlobal(char *prnname, char *prnval);
-void (*_getCustomFunction(char *prmCommand))(appData_t *);
+void (*_getcustomfunc(char *prnCommand))(appData_t *);
 environment_t *_getenv_var(environment_t *prnenviron, char *prnname);
 char *_getenvname(char *prnvar);
 char *_getenvvalue(char *prnvar);
