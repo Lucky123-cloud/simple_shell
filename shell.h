@@ -136,7 +136,7 @@ char *_itoa(int num);
 int _listEnvLen(environment_t *prnHead);
 char *_memcpy(char *prndest, char *prnsrc, unsigned int prnlimit);
 char *_memset(char *prmString, char prmCharacter, unsigned int prmLimit);
-int _nbrLen(int prmNumber);
+int _nbrLen(int num);
 char **_parsingPathEnvironment(appData_t *prmData);
 void _printenv(environment_t *prmEnviron);
 int _putchar(char prmChar);
