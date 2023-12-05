@@ -144,7 +144,7 @@ int _puts(char *prmStr);
 void *_realloc(void *prnpointer, unsigned int prnsizeA, unsigned int prnsizeB);
 void _setenv_val(environment_t *prnenviron, char *prnname, char *prnval, int prmOverwrite);
 void _setenvHelp(void);
-void _setEnvironment(appData_t *prmData);
+void _setEnvironment(appData_t *prnd);
 char *_strcat(char *prmDest, char *prmSrc);
 int _strcmp(char *prnstr1, char *prnstr2);
 char *_strcpy(char *prndest, char *prnsrc);
