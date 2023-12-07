@@ -4,8 +4,7 @@
  * main - check the code
  * Return: returns 0
  */
-int main(void)
-{
-	_putchar('\n');
-	return (0);
+int add(int a, int b
+	_putchar("%d\n", res);
+	return (a +b);
 }
