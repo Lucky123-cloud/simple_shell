@@ -10,5 +10,5 @@ int _isNumber(char *num)
 		return (1);
 	if (!_isdigit(*num))
 		return (0);
-
+	return (1);
 }
