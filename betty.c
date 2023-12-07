@@ -15,10 +15,10 @@ int add(int a, int b)
  * main - check the code
  * Return: returns 0
  */
-<<<<<<< HEAD
+
 int add(int a, int b
 	_putchar("%d\n", res);
-	return (a +b);
+	return (a + b);
 =======
 int main(void)
 {
@@ -27,5 +27,4 @@ int main(void)
 	int res = add(a, b);
 	printf("%d", res);
 	return (0);
->>>>>>> 8446eee65ddded6b84c2099fcd730936b0fc9b58
 }
