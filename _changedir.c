@@ -22,7 +22,7 @@ void _cd(appData_t *prnd)
 		_changeToHomeDirectory(prnd, currentDirectory);
 	/* Old path */
 	else if (_strcmp(prnd->arguments[1], "-") == 0)
-		_changeToPreviousDirectory(prnd, currentDirectory);
+		_cdprevDir(prnd, currentDirectory);
 	else
 		_changeToAnyDirectory(prnd, currentDirectory);
 }
