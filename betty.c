@@ -1,10 +1,31 @@
 #include <stdio.h>
-#include "shell.h"
+/**
+ * add - program to add numbers
+ * @a: first value
+ * @b: second value
+ * Return: returns sum
+ */
+
+int add(int a, int b)
+{
+	return (a + b);
+}
+
 /**
  * main - check the code
  * Return: returns 0
  */
+<<<<<<< HEAD
 int add(int a, int b
 	_putchar("%d\n", res);
 	return (a +b);
+=======
+int main(void)
+{
+	int a = 10;
+	int b = 5;
+	int res = add(a, b);
+	printf("%d", res);
+	return (0);
+>>>>>>> 8446eee65ddded6b84c2099fcd730936b0fc9b58
 }
