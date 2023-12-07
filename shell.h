@@ -95,7 +95,7 @@ void _changeToHomeDirectory(appData_t *prnd, char *prnCurrentDir);
 void _cdprevDir(appData_t *prnd, char *prnCurrentDir);
 int _checkEndCharacter(char *prmString);
 int _checkEscapeSeparators(char prmChar, char *prmEscapeSeparators);
-int _checkSeparators(char prmChar, char *prmSeparators);
+int _checkSeparators(char prnchar, char *prnseparators);
 char *_cleanstr(char *prnstr);
 environment_t *_createEnvNode(char *prngbl);
 void _ctrlD(int prnsignal __attribute__((unused)));
