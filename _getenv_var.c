@@ -16,5 +16,5 @@ environment_t *_getenv_var(environment_t *prnenviron, char *prnname)
 	if (_strcmp(prnenviron->name, prnname) == 0)
 		return (prnenviron);
 
-	return (_getenv_char(prnenviron->next, prnname));
+	return (_getenv_var(prnenviron->next, prnname));
 }
