@@ -105,7 +105,7 @@ void _prompt(void);
 void _env(appData_t *prnd);
 void _envHelp(void);
 void _ErrorHandling(appData_t *prndata, int messagecode);
-void _execCommand(appData_t *prmData);
+void _execCommand(appData_t *prnd);
 void _exits(appData_t *prnd);
 void _exitHelp(void);
 void _Freeappdata(appData_t *prndata);
