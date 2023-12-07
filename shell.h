@@ -159,6 +159,6 @@ void _unsetenv(appData_t *prndata, char *prnname);
 void _unsetenvHelp(void);
 void _unsetEnvironment(appData_t *prndata);
 char *_whichpath(appData_t *prnd);
-int _wordNumber(char *prmString, char *prmSeparators);
+int _wordNumber(char *prnstr, char *prnSep);
 int _atoi(char *prnstr);
 #endif
