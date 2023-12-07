@@ -94,7 +94,7 @@ void _changeToAnyDirectory(appData_t *prmData, char *prmCurrentDirectory);
 void _changeToHomeDirectory(appData_t *prnd, char *prnCurrentDir);
 void _cdprevDir(appData_t *prnd, char *prnCurrentDir);
 int _checkEndCharacter(char *prmString);
-int _checkEscapeSeparators(char prmChar, char *prmEscapeSeparators);
+int _checkEscapeSeparators(char prnchar, char *prnEscSep);
 int _checkSeparators(char prnchar, char *prnseparators);
 char *_cleanstr(char *prnstr);
 environment_t *_createEnvNode(char *prngbl);
