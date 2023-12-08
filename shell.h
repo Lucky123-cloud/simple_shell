@@ -99,7 +99,7 @@ int _checkSeparators(char prnchar, char *prnseparators);
 char *_cleanstr(char *prnstr);
 environment_t *_createEnvNode(char *prngbl);
 void _ctrlD(int prnsignal __attribute__((unused)));
-void _defaultHelp(char *prmCommand);
+void _defaultHelp(char *prnCmd);
 int _deleteEnvNode(environment_t *prnHead, char *prnname);
 void _prompt(void);
 void _env(appData_t *prnd);
