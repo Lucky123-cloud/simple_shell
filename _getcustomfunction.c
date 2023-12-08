@@ -15,7 +15,7 @@ void (*_getcustomfunc(char *prnCommand))(appData_t *)
 		{"cd", _cd},
 		{"env", _env},
 		{"setenv", _setEnvironment},
-		{"unsetenv", _unsetEnvironment},
+		{"unsetenv", _unsetEnviron},
 		{"exit", _exits},
 		{"help", _help}
 	};
