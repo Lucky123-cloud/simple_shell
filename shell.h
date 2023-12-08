@@ -146,7 +146,7 @@ char *_strcat(char *prmDest, char *prmSrc);
 int _strcmp(char *prnstr1, char *prnstr2);
 char *_strcpy(char *prndest, char *prnsrc);
 char *_strconcat(char *prnstr1, char *prnstr2);
-char *_strncpy(char *prndest, char *prnsrc, int prmLimit);
+char *_strncpy(char *destn, char *stc, int lim);
 unsigned int _strcspn(char *prmString, char *prmDeny);
 char *_strdup(char *prnstr);
 int _strlen(char *prmStr);

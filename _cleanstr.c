@@ -2,14 +2,12 @@
 
 /**
  * _cleanstr - removes unnecesaarily put trailing white spaces
- *
  * @prnstr: Str input by the user and is to be cleaned
- *
  * Return: A clean string whitespace free is returned
  */
 char *_cleanstr(char *prnstr)
 {
-	int cLoopStart = 0, cLoopEnd = 0, size = 0;
+	int clps = 0, clpe = 0, size = 0;
 	char *str;
 
 	if (prnstr == NULL)
@@ -17,26 +15,25 @@ char *_cleanstr(char *prnstr)
 
 	size = _strlen(prnstr);
 
-	while (_inArray(prnstr[cLoopStart], " ") == 1)
-		cLoopStart++;
+	while (_inArray(prnstr[clps], " ") == 1)
+		clps++;
 
-	cLoopEnd = size - 1;
-	while (_inArray(prnstr[cLoopEnd], " ") == 1)
-		cLoopEnd--;
-	cLoopEnd = size - 1 - cLoopEnd;
+	clpe = size - 1;
+	while (_inArray(prnstr[clpe], " ") == 1)
+		clpe--;
+	clpe = size - 1 - clpe;
 
-	str = _calloc(sizeof(char), size - cLoopStart - cLoopEnd + 1);
-	_strncpy(str, (prnstr + cLoopStart), size - cLoopStart - cLoopEnd);
-	str[size - cLoopStart - cLoopEnd] = '\0';
+	str = _calloc(sizeof(char), size - clps - clpe + 1);
+	_strncpy(str, (prnstr + clps), size - clps - clpe);
+	str[size - clps - clpe] = '\0';
 
-	/**prmString = *string;*/
 	prnstr = _realloc(
 		prnstr,
 		size,
-		sizeof(char) * (size - cLoopStart - cLoopEnd + 1)
+		sizeof(char) * (size - clps - clpe + 1)
 	);
 	_strcpy(prnstr, str);
-	prnstr[size - cLoopStart - cLoopEnd] = '\0';
+	prnstr[size - clps - clpe] = '\0';
 	free(str);
 	return (prnstr);
 }
