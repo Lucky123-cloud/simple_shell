@@ -118,10 +118,7 @@ environment_t *_getenv_var(environment_t *prnenviron, char *prnname);
 char *_getenvname(char *prnvar);
 char *_getenvvalue(char *prnvar);
 int _getEnvIndex(environment_t *prndata, char *prnname);
-environment_t *_getEnvNodeAtIndex(
-	environment_t *prmHead,
-	unsigned int prmIndex
-);
+environment_t *_getEnvNodeAtIndex(environment_t *prnfirst, unsigned int i);
 environment_t *_getLastEnvNode(environment_t *prnHeadNode);
 void _getline(appData_t *prndata);
 char *_getword(char *prnGlobal, int prnOffset, int prnSize);
