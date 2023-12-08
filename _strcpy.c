@@ -10,7 +10,7 @@
  *
  * Return: returns character pointer (char*)
  */
-char *_strncpy(char *prndest, char *prnsrc)
+char *_strcpy(char *prndest, char *prnsrc)
 {
 	int clp, size = _strlen(prnsrc);
 
