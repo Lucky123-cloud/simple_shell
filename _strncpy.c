@@ -1,25 +1,24 @@
 #include "shell.h"
 
 /**
- * _strcpy - cpy str pointed to by src,
- *               plus terminating null byte (\0),
- *               to the buffer pointed to by dest
+ * _strncpy - Helps in printing and copies a string
  *
- * @prndest: 1st character pointer to the string
- * @prnsrc: 2nd character pointer to the string
+ * @prndest: character pointer to the memory
+ * @prnsrc: character  pointers to the memory
+ * @prnlim: The number of chacters provided
  *
- * Return: returns character pointer (char*)
+ * Return: string
  */
-char *_strcpy(char *prndest, char *prnsrc)
+char *_strncpy(char *prndest, char *prnsrc, int prnlim)
 {
-	int clp, size = _strlen(prnsrc);
+	int length, size_s;
 
-	for (clp = 0; clp < size; clp++)
+	size_s = _strlen(prnsrc);
+
+	for (length = 0; length < prnlim; length++)
 	{
-		prndest[clp] = prnsrc[clp];
+		prndest[length] = (length <= size_s) ? prnsrc[length] : '\0';
 	}
-
-	prndest[size] = '\0';
 
 	return (prndest);
 }
