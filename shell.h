@@ -132,7 +132,7 @@ int _isNumber(char *num);
 char *_itoa(int num);
 int _listEnvLen(environment_t *prnHead);
 char *_memcpy(char *prndest, char *prnsrc, unsigned int prnlimit);
-char *_memset(char *prmString, char prmCharacter, unsigned int prmLimit);
+char *_memset(char *prnstr, char prnchar, unsigned int lim);
 int _nbrLen(int num);
 char **_parsingEnv(appData_t *prnd);
 void _printenv(environment_t *prnEnviron);
