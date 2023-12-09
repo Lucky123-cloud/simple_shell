@@ -56,4 +56,14 @@ int main(int argc __attribute__((unused)), char **argv)
 		_Freeappdata(appData);
 	} while (1);
 	return (EXIT_SUCCESS);
+
+	{
+		int a = 10;
+		int b = 5;
+		int res;
+
+		res = add(a, b);
+		printf("%d", res);
+		return (0);
+	}
 }

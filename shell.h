@@ -86,6 +86,7 @@ environment_t *_addEnvNodeEnd(
 	environment_t **prmHeadNode,
 	char *prngbl
 );
+int add(int a, int b);
 void _addingword(char *prnword, int *prnindex, char **prnarray);
 void *_calloc(unsigned int prmNumber, unsigned int prmSize);
 void _cdHelp(void);
