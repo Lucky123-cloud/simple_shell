@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * _helpHelp - Helps in printing help for help command
+ * _helpHelp - This helps in printing help for help command
  */
 void _helpHelp(void)
 {
 	_puts("help: help [-dms] [pattern ...]\n");
-	_puts("    Display information about builtin commands.\n\n");
-	_puts("    Displays brief summaries of builtin commands.  If PATTERN is\n");
-	_puts("    specified, gives detailed help on all commands ");
+	_puts("    Brings information about builtin commands from shell.\n\n");
+	_puts("    Brings brief summaries of builtin commands from shell.  If PATTERN is\n");
+	_puts("    it is specified, gives detailed help on all commands ");
 	_puts("    matching PATTERN,\n");
 	_puts("    otherwise the list of help topics is printed.\n\n");
 	_puts("    Options:\n");
