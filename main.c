@@ -1,25 +1,23 @@
 #include "shell.h"
-
 /**
  * main - This is the main function of the programme
  *
  * Return: always 0 on success
  */
-
 int main(int argc __attribute__((unused)), char **argv)
 {
 	appData_t *appData = NULL;
 	int clp;
 	void (*func)(appData_t *);
-
 	appData = _initData(argv);
-
-	do {
+	
+	do
+	{
 		signal(SIGINT, _ctrlD);
 		_prompt();
 		_getline(appData);
-
 		appData->history = _strtow(appData->buffer, COMMAND_SEPARATOR, ESCAPE_SEPARATOR);
+
 		if (appData->history == NULL)
 		{
 			_Freeappdata(appData);
@@ -40,9 +38,11 @@ int main(int argc __attribute__((unused)), char **argv)
 				break;
 			}
 			appData->commandName = _strdup(appData->arguments[0]);
+
 			if (appData->commandName != NULL)
 			{
 				func = _getcustomfunc(appData->commandName);
+
 				if (func != NULL)
 					func(appData);
 				else
@@ -54,8 +54,9 @@ int main(int argc __attribute__((unused)), char **argv)
 			appData->commandName = NULL;
 		}
 		_Freeappdata(appData);
-	} while (1);
-	return (EXIT_SUCCESS);
+	}
+	while (1);
+		return (EXIT_SUCCESS);
 
 	{
 		int a = 10;

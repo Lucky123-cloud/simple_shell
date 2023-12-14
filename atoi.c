@@ -20,7 +20,7 @@ int _atoi(char *prnstr)
 			c += now - 48;
 		}
 		else if (now == '-')
-			a = - a;
+			a = -a;
 		else if (c > 0)
 			break;
 	}

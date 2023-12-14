@@ -3,34 +3,30 @@
 /**
  * _setenv_val - sets an effective environ value
  *
- * @prnenviron: environment of the created linked list
- * @prnname: The environment name of the simple shell
- * @prnval:  The environment value of the simple shell
- * @prnoverwrite: overwrites the value given to the simple shell
+ * @prnenv: environment of the created linked list
+ * @prnm: The environment name of the simple shell
+ * @prval:  The environment value of the simple shell
+ * @prOvrwrt: overwrites the value given to the simple shell
  */
-void _setenv_val(
-	environment_t *prnenviron,
-	char *prnname,
-	char *prnval,
-	int prnoverwrite
-) {
+void _setenv_val(environment_t *prnenv, char *prnm, char *prval, int prOvrwrt)
+{
 	environment_t *envNode;
 	char *tmp;
 
-	if (prnname == NULL || prnval == NULL)
+	if (prnm == NULL || prval == NULL)
 		return;
 
-	envNode = _getenv_var(prnenviron, prnname);
+	envNode = _getenv_var(prnenv, prnm);
 
 	if (envNode == NULL)
 	{
-		tmp = _generateEnvGlobal(prnname, prnval);
-		_addEnvNodeEnd(&prnenviron, tmp);
+		tmp = _generateEnvGlobal(prnm, prval);
+		_addEnvNodeEnd(&prnenv, tmp);
 		free(tmp);
 	}
-	else if (prnoverwrite == 1)
+	else if (prOvrwrt == 1)
 	{
 		free(envNode->value);
-		envNode->value = _strdup(prnval);
+		envNode->value = _strdup(prval);
 	}
 }
