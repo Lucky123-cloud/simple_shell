@@ -161,21 +161,21 @@ void *_realloc(void *, unsigned int, unsigned int);
 int bfree(void **);
 
 /* atoi.c */
-int interactive(info_t *);
-int is_delim(char, char *);
-int _isalpha(int);
-int _atoi(char *);
+int interactive(info_t *addr);
+int is_delim(char a, char *b);
+int _isalpha(int v);
+int _atoi(char *f);
 
 /* errors1.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+int _erratoi(char *a);
+void print_error(info_t *adr, char *g);
+int print_d(int in, int g);
+char *convert_number(long int nm, int b, int fl);
+void remove_comments(char *buffer);
 
 /* builtin.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
+int _myexit(info_t *adr);
+int _mycd(info_t *adr);
 int _myhelp(info_t *);
 
 /* builtin1.c */
@@ -193,11 +193,11 @@ void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
 /* environ.c */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+char *_getenv(info_t *adr, const char *b);
+int _myenv(info_t *adr);
+int _mysetenv(info_t *adr);
+int _myunsetenv(info_t *adr);
+int populate_env_list(info_t *adr);
 
 /* getenv.c */
 char **get_environ(info_t *);
