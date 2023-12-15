@@ -12,18 +12,22 @@
 #include <fcntl.h>
 #include <errno.h>
 
+/* for read/write buffers */
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
 
+/* for command chaining */
 #define CMD_NORM 0
 #define CMD_OR 1
 #define CMD_AND 2
 #define CMD_CHAIN 3
 
+/* for convert_number() */
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
 
+/* 1 if using system getline() */
 #define USE_GETLINE 0
 #define USE_STRTOK 0
 
@@ -107,17 +111,21 @@ typedef struct builtin
 	int (*func)(info_t *);
 } builtin_table;
 
+/* shloop.c */
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
+/* parser.c */
 int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 
+/* loophsh.c */
 int loophsh(char **);
-int main(int argc, char **argv);
+
+/* errors.c */
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
@@ -153,22 +161,22 @@ void *_realloc(void *, unsigned int, unsigned int);
 int bfree(void **);
 
 /* atoi.c */
-int interactive(info_t * addr);
-int is_delim(char a, char *b);
-int _isalpha(int f);
-int _atoi(char *h);
+int interactive(info_t *);
+int is_delim(char, char *);
+int _isalpha(int);
+int _atoi(char *);
 
 /* errors1.c */
-int _erroratoi(char *);
+int _erratoi(char *);
 void print_error(info_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 /* builtin.c */
-int _exit(info_t *);
-int _cd(info_t *);
-int _help(info_t *);
+int _myexit(info_t *);
+int _mycd(info_t *);
+int _myhelp(info_t *);
 
 /* builtin1.c */
 int _myhistory(info_t *);
@@ -223,4 +231,5 @@ void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
+
 #endif
