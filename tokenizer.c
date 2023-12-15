@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * strtow - checks the string tow
+ * strtow - checks to the string tow
  * @str: the input string
  * @d: the delimeter string
  * Return: a pointer to an array of strings, or NULL on failure
