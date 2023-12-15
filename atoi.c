@@ -17,7 +17,7 @@ int interactive(info_t *addr)
 int is_delim(char a, char *b)
 {
 	while (*b)
-		if (*b++ == c)
+		if (*b++ == a)
 			return (1);
 	return (0);
 }
