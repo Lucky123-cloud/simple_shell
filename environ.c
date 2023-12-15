@@ -64,7 +64,7 @@ int _myunsetenv(info_t *adr)
 		return (1);
 	}
 	for (a = 1; a <= adr->argc; a++)
-		_unsetenv(adr, adr->argv[i]);
+		_unsetenv(adr, adr->argv[a]);
 
 	return (0);
 }

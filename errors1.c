@@ -10,14 +10,15 @@ int _erratoi(char *a)
 	int r = 0;
 	unsigned long int t = 0;
 
-	if (*a= '+')
-		a+;
-	for (r = 0; a[r]; != '\0'; r++)
+	if (*a == '+')
+		a++;
+	for (r = 0; a[r] != '\0'; r++)
 	{
 		if (a[r] >= '0' && a[r] <= '9')
 		{
 			t *= 10;
-			t += (s[i] - '0');
+			t += (a[r] - '0');
+
 			if (t > INT_MAX)
 				return (-1);
 		}
@@ -41,7 +42,7 @@ void print_error(info_t *adr, char *g)
 	_eputs(": ");
 	_eputs(adr->argv[0]);
 	_eputs(": ");
-	_eputs(estr);
+	_eputs(g);
 }
 
 /**
@@ -67,14 +68,14 @@ int print_d(int in, int d)
 	else
 		_abs_ = in;
 	cur = _abs_;
-	for (i = 1000000000; i > 1; i /= 10)
+	for (a = 1000000000; a > 1; a /= 10)
 	{
-		if (_abs_ / i)
+		if (_abs_ / a)
 		{
-			__putchar('0' + cur / i);
+			__putchar('0' + cur / a);
 			ct++;
 		}
-		cur %= i;
+		cur %= a;
 	}
 	__putchar('0' + cur);
 	ct++;
@@ -97,7 +98,7 @@ char *convert_number(long int nm, int b, int fl)
 	char *pointer;
 	unsigned long n = nm;
 
-	if (!(flags & CONVERT_UNSIGNED) && nm < 0)
+	if (!(fl & CONVERT_UNSIGNED) && nm < 0)
 	{
 		n = -nm;
 		sn = '-';
