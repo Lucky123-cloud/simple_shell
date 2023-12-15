@@ -49,7 +49,7 @@ int _atoi(char *f)
 	int p, sn = 1, fl = 0, output;
 	unsigned int endresl = 0;
 
-	for (f = 0;  f[p] != '\0' && fl != 2; f++)
+	for (p = 0;  f[p] != '\0' && fl != 2; p++)
 	{
 		if (f[p] == '-')
 			sn *= -1;
