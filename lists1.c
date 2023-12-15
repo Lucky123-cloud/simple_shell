@@ -1,122 +1,118 @@
 #include "shell.h"
 
 /**
- * list_len - determines length of linked list
- * @h: pointer to first node
- *
- * Return: size of list
+ * list_len - checks the length of the list 
+ * @a: check the parameter
+ * Return: returns value of the list
  */
-size_t list_len(const list_t *h)
+size_t list_len(const list_t *a)
 {
-	size_t i = 0;
+	size_t b = 0;
 
-	while (h)
+	while (a)
 	{
-		h = h->next;
-		i++;
+		a = a->next;
+		b++;
 	}
-	return (i);
+	return (b);
 }
 
 /**
- * list_to_strings - returns an array of strings of the list->str
- * @head: pointer to first node
- *
- * Return: array of strings
+ * list_to_strings - checks the list of strings
+ * @hd: this is the first parameter node
+ * Return: returns value
  */
-char **list_to_strings(list_t *head)
+char **list_to_strings(list_t *hd)
 {
-	list_t *node = head;
-	size_t i = list_len(head), j;
-	char **strs;
-	char *str;
+	list_t *n = hd;
+	size_t a = list_len(hd), b;
+	char **st;
+	char *g;
 
-	if (!head || !i)
+	if (!hd || !a)
 		return (NULL);
-	strs = malloc(sizeof(char *) * (i + 1));
-	if (!strs)
+	st = malloc(sizeof(char *) * (a + 1));
+	if (!st)
 		return (NULL);
-	for (i = 0; node; node = node->next, i++)
+	for (a = 0; n; n = n->next, a++)
 	{
-		str = malloc(_strlen(node->str) + 1);
-		if (!str)
+		g = malloc(_strlen(n->str) + 1);
+
+		if (!g)
 		{
-			for (j = 0; j < i; j++)
-				free(strs[j]);
-			free(strs);
+			for (b = 0; b < a; b++)
+				free(st[b]);
+			free(g);
 			return (NULL);
 		}
 
-		str = _strcpy(str, node->str);
-		strs[i] = str;
+		g = _strcpy(g, n->str);
+		st[a] = g;
 	}
-	strs[i] = NULL;
-	return (strs);
+	st[a] = NULL;
+	return (st);
 }
 
 
 /**
- * print_list - prints all elements of a list_t linked list
- * @h: pointer to first node
- *
- * Return: size of list
+ * print_list - prints a list
+ * @hd: this is the first node parameter
+ * Return: returns value
  */
-size_t print_list(const list_t *h)
+size_t print_list(const list_t *hd)
 {
-	size_t i = 0;
+	size_t a = 0;
 
-	while (h)
+	while (hd)
 	{
-		_puts(convert_number(h->num, 10, 0));
+		_puts(convert_number(hd->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
-		_puts(h->str ? h->str : "(nil)");
+		_puts(hd->str ? hd->str : "(nil)");
 		_puts("\n");
-		h = h->next;
-		i++;
+		hd = hd->next;
+		a++;
 	}
-	return (i);
+	return (a);
 }
 
 /**
- * node_starts_with - returns node whose string starts with prefix
- * @node: pointer to list head
- * @prefix: string to match
- * @c: the next character after prefix to match
- *
- * Return: match node or null
+ * node_starts_with - checks the node
+ * @n: value of node parameters
+ * @p: starts the parameters
+ * @k: checks the next parameters
+ * Return: returns 1 or 0
  */
-list_t *node_starts_with(list_t *node, char *prefix, char c)
+list_t *node_starts_with(list_t *n, char *p, char k)
 {
-	char *p = NULL;
+	char *a = NULL;
 
-	while (node)
+	while (n)
 	{
-		p = starts_with(node->str, prefix);
-		if (p && ((c == -1) || (*p == c)))
-			return (node);
-		node = node->next;
+		a = starts_with(n->str, p);
+		if (a && ((k == -1) || (*a == k)))
+			return (n);
+		n = n->next;
 	}
 	return (NULL);
 }
 
 /**
- * get_node_index - gets the index of a node
- * @head: pointer to list head
- * @node: pointer to the node
- *
- * Return: index of node or -1
+ * get_node_index - checks the index of the nose
+ * @hd: checks the first parameter
+ * @n: checks the next code
+ * Return: returns value
  */
-ssize_t get_node_index(list_t *head, list_t *node)
+ssize_t get_node_index(list_t *hd, list_t *n)
 {
-	size_t i = 0;
+	size_t a = 0;
 
-	while (head)
+	while (hd)
 	{
-		if (head == node)
-			return (i);
-		head = head->next;
-		i++;
+		if (hd == n)
+			return (a);
+		hd = hd->next;
+		a++;
 	}
 	return (-1);
 }

@@ -1,26 +1,20 @@
 #include "shell.h"
 
 /**
- * Parsing, syntax analysis, or syntactic analysis is the process of analyzing a string of symbols,
- * either in natural language, computer languages or data structures
+ * is_cmd - this is the command to execute
+ * @adr: this is the address parameter
+ * @pt: gives us the path parameter
+ * Return: returns 1 or 0
  */
-
-/**
- * is_cmd - determines if a file is an executable command
- * @info: the info struct
- * @path: path to the file
- *
- * Return: 1 if true, 0 otherwise
- */
-int is_cmd(info_t *info, char *path)
+int is_cmd(info_t *adr, char *pt)
 {
-	struct stat st;
+	struct stat s;
 
-	(void)info;
-	if (!path || stat(path, &st))
+	(void)adr;
+	if (!pt || stat(pt, &s))
 		return (0);
 
-	if (st.st_mode & S_IFREG)
+	if (s.st_mode & S_IFREG)
 	{
 		return (1);
 	}
@@ -28,64 +22,62 @@ int is_cmd(info_t *info, char *path)
 }
 
 /**
- * dup_chars - duplicates characters
- * @pathstr: the PATH string
- * @start: starting index
- * @stop: stopping index
- *
- * Return: pointer to new buffer
+ * dup_chars - this is to duplicate characters
+ * @ptstr: checks the path of the string
+ * @a: this tells us which parameter will start
+ * @z: this tells us which parameter will end with
+ * Return: returns value
  */
-char *dup_chars(char *pathstr, int start, int stop)
+char *dup_chars(char *ptstr, int a, int z)
 {
-	static char buf[1024];
-	int i = 0, k = 0;
+	static char buffer[1024];
+	int w = 0, e = 0;
 
-	for (k = 0, i = start; i < stop; i++)
-		if (pathstr[i] != ':')
-			buf[k++] = pathstr[i];
-	buf[k] = 0;
-	return (buf);
+	for (e = 0, w = a; w < z; w++)
+		if (ptstr[w] != ':')
+			buffer[e++] = ptstr[a];
+	buffer[e] = 0;
+	return (buffer);
 }
 
 /**
- * find_path - finds this cmd in the PATH string
- * @info: the info struct
- * @pathstr: the PATH string
- * @cmd: the cmd to find
- *
- * Return: full path of cmd if found or NULL
+ * find_path - checks the path to follow
+ * @adr: checks the address parameter
+ * @pthstr: represents string path
+ * @cdd: check the parameter
+ * Return: returns value
  */
-char *find_path(info_t *info, char *pathstr, char *cmd)
+char *find_path(info_t *adr, char *pthstr, char *cdd)
 {
-	int i = 0, curr_pos = 0;
-	char *path;
+	int a = 0, crr = 0;
+	char *p;
 
-	if (!pathstr)
+	if (!pthstr)
 		return (NULL);
-	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
+	if ((_strlen(cdd) > 2) && starts_with(cdd, "./"))
 	{
-		if (is_cmd(info, cmd))
-			return (cmd);
+		if (is_cmd(adr, cdd))
+			return (cdd);
 	}
 	while (1)
 	{
-		if (!pathstr[i] || pathstr[i] == ':')
+		if (!pthstr[a] || pthstr[a] == ':')
 		{
-			path = dup_chars(pathstr, curr_pos, i);
-			if (!*path)
-				_strcat(path, cmd);
+			p = dup_chars(pthstr, crr, a);
+			if (!*p)
+				_strcat(p, cdd);
 			else
 			{
-				_strcat(path, "/");
-				_strcat(path, cmd);
+				_strcat(p, "/");
+				_strcat(p, cdd);
 			}
-			if (is_cmd(info, path))
-				return (path);
-			if (!pathstr[i])
+			if (is_cmd(adr, p))
+				return (p);
+			if (!pthstr[a])
 				break;
-			curr_pos = i;
+			crr = a;
 		}
-		i++;
+		a++;
 	}
 	return (NULL);
 }

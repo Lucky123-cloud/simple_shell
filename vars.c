@@ -1,154 +1,151 @@
 #include "shell.h"
 
 /**
- * is_chain - test if current char in buffer is a chain delimeter
- * @info: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
- *
- * Return: 1 if chain delimeter, 0 otherwise
+ * is_chain - checks the chain delim parameters
+ * @adr: address parameter
+ * @buffer: gives us the buffer address
+ * @a: parameter string
+ * Return: 1 or 0
  */
-int is_chain(info_t *info, char *buf, size_t *p)
+int is_chain(info_t *adr, char *buffer, size_t *a)
 {
-	size_t j = *p;
+	size_t d = *a;
 
-	if (buf[j] == '|' && buf[j + 1] == '|')
+	if (buffer[d] == '|' && buffer[d + 1] == '|')
 	{
-		buf[j] = 0;
-		j++;
-		info->cmd_buf_type = CMD_OR;
+		buffer[d] = 0;
+		d++;
+		adr->cmd_buf_type = CMD_OR;
 	}
-	else if (buf[j] == '&' && buf[j + 1] == '&')
+	else if (buffer[d] == '&' && buffer[d + 1] == '&')
 	{
-		buf[j] = 0;
-		j++;
-		info->cmd_buf_type = CMD_AND;
+		buffer[d] = 0;
+		d++;
+		adr->cmd_buf_type = CMD_AND;
 	}
-	else if (buf[j] == ';') /* found end of this command */
+	else if (buffer[d] == ';')
 	{
-		buf[j] = 0; /* replace semicolon with null */
-		info->cmd_buf_type = CMD_CHAIN;
+		buffer[d] = 0;
+		adr->cmd_buf_type = CMD_CHAIN;
 	}
 	else
 		return (0);
-	*p = j;
+	*a = d;
 	return (1);
 }
 
 /**
- * check_chain - checks we should continue chaining based on last status
- * @info: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
- * @i: starting position in buf
- * @len: length of buf
- *
- * Return: Void
+ * check_chain - checks the status of the chain
+ * @adr: gives us the address parameter
+ * @buffer: checks the character buffer
+ * @a: check the buffer parameter1
+ * @m: check the buffer parameter2
+ * @lgth: checks the lengh
+ * Return: returns void
  */
-void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
+void check_chain(info_t *adr, char *buffer, size_t *a, size_t m, size_t lgth)
 {
-	size_t j = *p;
+	size_t d = *a;
 
-	if (info->cmd_buf_type == CMD_AND)
+	if (adr->cmd_buf_type == CMD_AND)
 	{
-		if (info->status)
+		if (adr->status)
 		{
-			buf[i] = 0;
-			j = len;
+			buffer[m] = 0;
+			d = lgth;
 		}
 	}
-	if (info->cmd_buf_type == CMD_OR)
+	if (adr->cmd_buf_type == CMD_OR)
 	{
-		if (!info->status)
+		if (!adr->status)
 		{
-			buf[i] = 0;
-			j = len;
+			buffer[m] = 0;
+			d = lgth;
 		}
 	}
 
-	*p = j;
+	*a = d;
 }
 
 /**
- * replace_alias - replaces an aliases in the tokenized string
- * @info: the parameter struct
- *
- * Return: 1 if replaced, 0 otherwise
+ * replace_alias - replace string alias
+ * @adr: address parameter
+ * Return: returns 1 or 0
  */
-int replace_alias(info_t *info)
+int replace_alias(info_t *adr)
 {
-	int i;
-	list_t *node;
-	char *p;
+	int a;
+	list_t *n;
+	char *c;
 
-	for (i = 0; i < 10; i++)
+	for (a = 0; a < 10; a++)
 	{
-		node = node_starts_with(info->alias, info->argv[0], '=');
-		if (!node)
+		n = node_starts_with(adr->alias, adr->argv[0], '=');
+		
+		if (!n)
 			return (0);
-		free(info->argv[0]);
-		p = _strchr(node->str, '=');
-		if (!p)
+		free(adr->argv[0]);
+		c = _strchr(n->str, '=');
+		
+		if (!c)
 			return (0);
-		p = _strdup(p + 1);
-		if (!p)
+		c = _strdup(c + 1);
+
+		if (!c)
 			return (0);
-		info->argv[0] = p;
+		adr->argv[0] = c;
 	}
 	return (1);
 }
 
 /**
- * replace_vars - replaces vars in the tokenized string
- * @info: the parameter struct
- *
- * Return: 1 if replaced, 0 otherwise
+ * replace_vars - replace var
+ * @adr: address parameter
+ * Return: 1 if replaced otherwise 0
  */
-int replace_vars(info_t *info)
+int replace_vars(info_t *adr)
 {
-	int i = 0;
-	list_t *node;
+	int a = 0;
+	list_t *n;
 
-	for (i = 0; info->argv[i]; i++)
+	for (a = 0; adr->argv[a]; a++)
 	{
-		if (info->argv[i][0] != '$' || !info->argv[i][1])
+		if (adr->argv[a][0] != '$' || !adr->argv[a][1])
 			continue;
 
-		if (!_strcmp(info->argv[i], "$?"))
+		if (!_strcmp(adr->argv[a], "$?"))
 		{
-			replace_string(&(info->argv[i]),
-				_strdup(convert_number(info->status, 10, 0)));
+			replace_string(&(adr->argv[a]),	_strdup(convert_number(adr->status, 10, 0)));
 			continue;
 		}
-		if (!_strcmp(info->argv[i], "$$"))
+		if (!_strcmp(adr->argv[a], "$$"))
 		{
-			replace_string(&(info->argv[i]),
+			replace_string(&(adr->argv[a]),
 				_strdup(convert_number(getpid(), 10, 0)));
 			continue;
 		}
-		node = node_starts_with(info->env, &info->argv[i][1], '=');
-		if (node)
+		n = node_starts_with(adr->env, &adr->argv[a][1], '=');
+		if (n)
 		{
-			replace_string(&(info->argv[i]),
-				_strdup(_strchr(node->str, '=') + 1));
+			replace_string(&(adr->argv[a]),
+				_strdup(_strchr(n->str, '=') + 1));
 			continue;
 		}
-		replace_string(&info->argv[i], _strdup(""));
+		replace_string(&adr->argv[a], _strdup(""));
 
 	}
 	return (0);
 }
 
 /**
- * replace_string - replaces string
- * @old: address of old string
- * @new: new string
- *
- * Return: 1 if replaced, 0 otherwise
+ * replace_string - replace the string parameter
+ * @a: value of old strin
+ * @aa: value of current string
+ * Return: returns 1 otherwise 0
  */
-int replace_string(char **old, char *new)
+int replace_string(char **a, char *aa)
 {
-	free(*old);
-	*old = new;
+	free(*a);
+	*a = aa;
 	return (1);
 }
