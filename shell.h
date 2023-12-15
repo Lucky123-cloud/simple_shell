@@ -167,16 +167,16 @@ int _isalpha(int);
 int _atoi(char *);
 
 /* errors1.c */
-int _erratoi(char *);
+int _erroratoi(char *);
 void print_error(info_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 /* builtin.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int _exit(info_t *);
+int _cd(info_t *);
+int _help(info_t *);
 
 /* builtin1.c */
 int _myhistory(info_t *);
