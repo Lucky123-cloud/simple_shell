@@ -1,25 +1,25 @@
 #include "shell.h"
 
 /**
- * hsh - main shell loop
- * @info: the parameter & return info struct
- * @av: the argument vector from main()
+ * hsh - The function of this project main shell loop
+ * @info: the parameter and it returns information struct
+ * @av: This is the argument vector from main()
  *
- * Return: 0 on success, 1 on error, or error code
+ * Return: returns 0 on success, 1 on error, or error code
  */
 int hsh(info_t *info, char **av)
 {
-	ssize_t r = 0;
+	ssize_t i = 0;
 	int builtin_ret = 0;
 
-	while (r != -1 && builtin_ret != -2)
+	while (i != -1 && builtin_ret != -2)
 	{
 		clear_info(info);
 		if (interactive(info))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
-		r = get_input(info);
-		if (r != -1)
+		i = get_input(info);
+		if (i != -1)
 		{
 			set_info(info, av);
 			builtin_ret = find_builtin(info);
