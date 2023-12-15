@@ -14,7 +14,7 @@ void _exits(appData_t *prnd)
 	{
 		a = _atoi(prnd->arguments[1]);
 	}
-	if (a < 0 || (prnd->arguments[1] != NULL && !_isNumber(prnd->arguments[1])))
+	if (a < 0 || (prnd->arguments[1] != NULL &&!_isNumber(prnd->arguments[1])))
 	{
 		_ErrorHandling(prnd, 106);
 		a = 2;
