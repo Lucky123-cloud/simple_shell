@@ -1,74 +1,73 @@
 #include "shell.h"
 
 /**
- * interactive - returns true if shell is interactive mode
- * @info: struct address
- *
- * Return: 1 if interactive mode, 0 otherwise
+ * interactive - brings us to the interactive mode
+ * @addr: struct address
+ * Return: return 0 or 1
  */
-int interactive(info_t *info)
+int interactive(info_t *addr)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return (isatty(STDIN_FILENO) && addr->readfd <= 2);
 }
 
 /**
- * is_delim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
- * Return: 1 if true, 0 if false
+ * is_delim - delimiter
+ * @a: character parameter
+ * @b: delimiter of the string
+ * Return: returns 1 or 0
  */
-int is_delim(char c, char *delim)
+int is_delim(char a, char *b)
 {
-	while (*delim)
-		if (*delim++ == c)
+	while (*b)
+		if (*b++ == a)
 			return (1);
 	return (0);
 }
 
 /**
- *_isalpha - checks for alphabetic character
- *@c: The character to input
- *Return: 1 if c is alphabetic, 0 otherwise
+ *_isalpha - checks for letters of the alphabet
+ *@v: character parameter
+ *Return: returns 1 or 0
  */
 
-int _isalpha(int c)
+int _isalpha(int v)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((v >= 'a' && v <= 'z') || (v >= 'A' && v <= 'Z'))
 		return (1);
 	else
 		return (0);
 }
 
 /**
- *_atoi - converts a string to an integer
- *@s: the string to be converted
- *Return: 0 if no numbers in string, converted number otherwise
+ *_atoi - converts  string to integer
+ *@f: the string to convert
+ *Return: returns 1 or 0
  */
 
-int _atoi(char *s)
+int _atoi(char *f)
 {
-	int i, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+	int p, sn = 1, fl = 0, output;
+	unsigned int endresl = 0;
 
-	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	for (f = 0;  f[p] != '\0' && fl != 2; f++)
 	{
-		if (s[i] == '-')
-			sign *= -1;
+		if (f[p] == '-')
+			sn *= -1;
 
-		if (s[i] >= '0' && s[i] <= '9')
+		if (f[p] >= '0' && f[p] <= '9')
 		{
-			flag = 1;
-			result *= 10;
-			result += (s[i] - '0');
+			fl = 1;
+			endresl *= 10;
+			endresl += (f[p] - '0');
 		}
-		else if (flag == 1)
-			flag = 2;
+		else if (fl == 1)
+			fl = 2;
 	}
 
-	if (sign == -1)
-		output = -result;
+	if (sn == -1)
+		output = -endresl;
 	else
-		output = result;
+		output = endresl;
 
 	return (output);
 }
