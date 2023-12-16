@@ -1,90 +1,93 @@
 #include "shell.h"
 
 /**
- * get_environ -gives us copy of the environ 
- * @adr: checks the function parameter
- * Return: returns 0
+ * get_environ - returns the string array copy of our environ
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ * Return: Always 0
  */
-char **get_environ(info_t *adr)
+char **get_environ(info_t *info)
 {
-	if (!adr->environ || adr->env_changed)
+	if (!info->environ || info->env_changed)
 	{
-		adr->environ = list_to_strings(adr->env);
-		adr->env_changed = 0;
+		info->environ = list_to_strings(info->env);
+		info->env_changed = 0;
 	}
 
-	return (adr->environ);
+	return (info->environ);
 }
 
 /**
- * _unsetenv - unset environment variable
- * @adr: checks the function parameter
- * @vr: checks the function parameter2
- *  Return: returns 1 or 0
+ * _unsetenv - Remove an environment variable
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ *  Return: 1 on delete, 0 otherwise
+ * @var: the string env var property
  */
-int _unsetenv(info_t *adr, char *vr)
+int _unsetenv(info_t *info, char *var)
 {
-	list_t *node = adr->env;
-	size_t a = 0;
-	char *f;
+	list_t *node = info->env;
+	size_t i = 0;
+	char *p;
 
-	if (!node || !vr)
+	if (!node || !var)
 		return (0);
 
 	while (node)
 	{
-		f = starts_with(node->str, vr);
-		if (f && *f == '=')
+		p = starts_with(node->str, var);
+		if (p && *p == '=')
 		{
-			adr->env_changed = delete_node_at_index(&(adr->env), a);
-			a = 0;
-			node = adr->env;
+			info->env_changed = delete_node_at_index(&(info->env), i);
+			i = 0;
+			node = info->env;
 			continue;
 		}
 		node = node->next;
-		a++;
+		i++;
 	}
-	return (adr->env_changed);
+	return (info->env_changed);
 }
 
 /**
- * _setenv - sets the environment variable
- * @adr: function parameter
- * @vr: variable parameter
- * @val: value of parameter 
- *  Return: returns 0
+ * _setenv - Initialize a new environment variable,
+ *             or modify an existing one
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ * @var: the string env var property
+ * @value: the string env var value
+ *  Return: Always 0
  */
-int _setenv(info_t *adr, char *vr, char *val)
+int _setenv(info_t *info, char *var, char *value)
 {
-	char *buffer = NULL;
+	char *buf = NULL;
 	list_t *node;
-	char *y;
+	char *p;
 
-	if (!vr || !val)
+	if (!var || !value)
 		return (0);
 
-	buffer = malloc(_strlen(vr) + _strlen(val) + 2);
-	if (!buffer)
+	buf = malloc(_strlen(var) + _strlen(value) + 2);
+	if (!buf)
 		return (1);
-	_strcpy(buffer, vr);
-	_strcat(buffer, "=");
-	_strcat(buffer, val);
-	node = adr->env;
+	_strcpy(buf, var);
+	_strcat(buf, "=");
+	_strcat(buf, value);
+	node = info->env;
 	while (node)
 	{
-		y = starts_with(node->str, vr);
-
-		if (y && *y == '=')
+		p = starts_with(node->str, var);
+		if (p && *p == '=')
 		{
 			free(node->str);
-			node->str = buffer;
-			adr->env_changed = 1;
+			node->str = buf;
+			info->env_changed = 1;
 			return (0);
 		}
 		node = node->next;
 	}
-	add_node_end(&(adr->env), buffer, 0);
-	free(buffer);
-	adr->env_changed = 1;
+	add_node_end(&(info->env), buf, 0);
+	free(buf);
+	info->env_changed = 1;
 	return (0);
 }

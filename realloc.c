@@ -1,61 +1,62 @@
 #include "shell.h"
 
 /**
- **_memset -sets memory with constant bytes
- *@q: displays parameter1
- *@w: displays parameter3
- *@e: displays paramtere3
- *Return: returns assigned value
+ **_memset - fills memory with a constant byte
+ *@s: the pointer to the memory area
+ *@b: the byte to fill *s with
+ *@n: the amount of bytes to be filled
+ *Return: (s) a pointer to the memory area s
  */
-char *_memset(char *q, char w, unsigned int e)
+char *_memset(char *s, char b, unsigned int n)
 {
-	unsigned int a;
+	unsigned int i;
 
-	for (a = 0; a < e; a++)
-		q[a] = w;
-	return (q);
+	for (i = 0; i < n; i++)
+		s[i] = b;
+	return (s);
 }
 
 /**
- * ffree - free string
- * @u: string parameter
+ * ffree - frees a string of strings
+ * @pp: string of strings
  */
-void ffree(char **u)
+void ffree(char **pp)
 {
-	char **a = u;
+	char **a = pp;
 
-	if (!u)
+	if (!pp)
 		return;
-	while (*u)
-		free(*u++);
+	while (*pp)
+		free(*pp++);
 	free(a);
 }
 
 /**
- * _realloc - memory reallocation
- * @pt: parameter pointer
- * @a: previous memory parameter
- * @aa: new memory parameter
+ * _realloc - reallocates a block of memory
+ * @ptr: pointer to previous malloc'ated block
+ * @old_size: byte size of previous block
+ * @new_size: byte size of new block
+ *
  * Return: pointer to da ol'block nameen.
  */
-void *_realloc(void *pt, unsigned int a, unsigned int aa)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *m;
+	char *p;
 
-	if (!pt)
-		return (malloc(aa));
-	if (!aa)
-		return (free(pt), NULL);
-	if (aa == a)
-		return (pt);
+	if (!ptr)
+		return (malloc(new_size));
+	if (!new_size)
+		return (free(ptr), NULL);
+	if (new_size == old_size)
+		return (ptr);
 
-	m = malloc(aa);
-	if (!m)
+	p = malloc(new_size);
+	if (!p)
 		return (NULL);
 
-	a = a < aa ? a : aa;
-	while (a--)
-		m[a] = ((char *)pt)[a];
-	free(pt);
-	return (m);
+	old_size = old_size < new_size ? old_size : new_size;
+	while (old_size--)
+		p[old_size] = ((char *)ptr)[old_size];
+	free(ptr);
+	return (p);
 }

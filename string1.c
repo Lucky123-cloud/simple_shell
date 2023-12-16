@@ -1,82 +1,87 @@
 #include "shell.h"
 
 /**
- * _strcpy -this copies the string
- * @z: end of the code
- * @a: source parameter
- * Return: returns value
+ * _strcpy - copies a string
+ * @dest: the destination
+ * @src: the source
+ *
+ * Return: pointer to destination
  */
-char *_strcpy(char *z, char *a)
+char *_strcpy(char *dest, char *src)
 {
-	int y = 0;
+	int i = 0;
 
-	if (z == a || a == 0)
-		return (z);
-	while (a[y])
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[i])
 	{
-		z[y] = a[y];
-		y++;
+		dest[i] = src[i];
+		i++;
 	}
-	z[y] = 0;
-	return (z);
+	dest[i] = 0;
+	return (dest);
 }
 
 /**
- * _strdup - string duplication
- * @x: parameter to be duplicated
- * Return: returns value
+ * _strdup - duplicates a string
+ * @str: the string to duplicate
+ *
+ * Return: pointer to the duplicated string
  */
-char *_strdup(const char *x)
+char *_strdup(const char *str)
 {
-	int lgh = 0;
-	char *r;
+	int length = 0;
+	char *ret;
 
-	if (x == NULL)
+	if (str == NULL)
 		return (NULL);
-	while (*x++)
-		lgh++;
-	r = malloc(sizeof(char) * (lgh + 1));
-	if (!r)
+	while (*str++)
+		length++;
+	ret = malloc(sizeof(char) * (length + 1));
+	if (!ret)
 		return (NULL);
-	for (lgh++; lgh--;)
-		r[lgh] = *--x;
-	return (r);
+	for (length++; length--;)
+		ret[length] = *--str;
+	return (ret);
 }
 
 /**
- *_puts - checks the input parameter
- *@a: gives us the value to input
- * Return: NULL
+ *_puts - prints an input string
+ *@str: the string to be printed
+ *
+ * Return: Nothing
  */
-void _puts(char *a)
+void _puts(char *str)
 {
-	int t = 0;
+	int i = 0;
 
-	if (!a)
+	if (!str)
 		return;
-	while (a[t] != '\0')
+	while (str[i] != '\0')
 	{
-		_putchar(a[t]);
-		t++;
+		_putchar(str[i]);
+		i++;
 	}
 }
 
 /**
- * _putchar - write the code
- * @g: parameter to write
- * Return: returns 1 or 0
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-int _putchar(char g)
+int _putchar(char c)
 {
-	static int a;
-	static char buffer[WRITE_BUF_SIZE];
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
 
-	if (g == BUF_FLUSH || a >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		write(1, buffer, a);
-		a = 0;
+		write(1, buf, i);
+		i = 0;
 	}
-	if (g != BUF_FLUSH)
-		buffer[a++] = g;
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
 	return (1);
 }

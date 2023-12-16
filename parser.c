@@ -1,20 +1,26 @@
 #include "shell.h"
 
 /**
- * is_cmd - this is the command to execute
- * @adr: this is the address parameter
- * @pt: gives us the path parameter
- * Return: returns 1 or 0
+ * Parsing, syntax analysis, or syntactic analysis is the process of analyzing a string of symbols,
+ * either in natural language, computer languages or data structures
  */
-int is_cmd(info_t *adr, char *pt)
-{
-	struct stat s;
 
-	(void)adr;
-	if (!pt || stat(pt, &s))
+/**
+ * is_cmd - determines if a file is an executable command
+ * @info: the info struct
+ * @path: path to the file
+ *
+ * Return: 1 if true, 0 otherwise
+ */
+int is_cmd(info_t *info, char *path)
+{
+	struct stat st;
+
+	(void)info;
+	if (!path || stat(path, &st))
 		return (0);
 
-	if (s.st_mode & S_IFREG)
+	if (st.st_mode & S_IFREG)
 	{
 		return (1);
 	}
@@ -22,62 +28,64 @@ int is_cmd(info_t *adr, char *pt)
 }
 
 /**
- * dup_chars - this is to duplicate characters
- * @ptstr: checks the path of the string
- * @a: this tells us which parameter will start
- * @z: this tells us which parameter will end with
- * Return: returns value
+ * dup_chars - duplicates characters
+ * @pathstr: the PATH string
+ * @start: starting index
+ * @stop: stopping index
+ *
+ * Return: pointer to new buffer
  */
-char *dup_chars(char *ptstr, int a, int z)
+char *dup_chars(char *pathstr, int start, int stop)
 {
-	static char buffer[1024];
-	int w = 0, e = 0;
+	static char buf[1024];
+	int i = 0, k = 0;
 
-	for (e = 0, w = a; w < z; w++)
-		if (ptstr[w] != ':')
-			buffer[e++] = ptstr[a];
-	buffer[e] = 0;
-	return (buffer);
+	for (k = 0, i = start; i < stop; i++)
+		if (pathstr[i] != ':')
+			buf[k++] = pathstr[i];
+	buf[k] = 0;
+	return (buf);
 }
 
 /**
- * find_path - checks the path to follow
- * @adr: checks the address parameter
- * @pthstr: represents string path
- * @cdd: check the parameter
- * Return: returns value
+ * find_path - finds this cmd in the PATH string
+ * @info: the info struct
+ * @pathstr: the PATH string
+ * @cmd: the cmd to find
+ *
+ * Return: full path of cmd if found or NULL
  */
-char *find_path(info_t *adr, char *pthstr, char *cdd)
+char *find_path(info_t *info, char *pathstr, char *cmd)
 {
-	int a = 0, crr = 0;
-	char *p;
+	int i = 0, curr_pos = 0;
+	char *path;
 
-	if (!pthstr)
+	if (!pathstr)
 		return (NULL);
-	if ((_strlen(cdd) > 2) && starts_with(cdd, "./"))
+	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
 	{
-		if (is_cmd(adr, cdd))
-			return (cdd);
+		if (is_cmd(info, cmd))
+			return (cmd);
 	}
 	while (1)
 	{
-		if (!pthstr[a] || pthstr[a] == ':')
+		if (!pathstr[i] || pathstr[i] == ':')
 		{
-			p = dup_chars(pthstr, crr, a);
-			if (!*p)
-				_strcat(p, cdd);
+			path = dup_chars(pathstr, curr_pos, i);
+			if (!*path)
+				_strcat(path, cmd);
 			else
 			{
-				_strcat(p, "/");
-				_strcat(p, cdd);
+				_strcat(path, "/");
+				_strcat(path, cmd);
 			}
-			if (is_cmd(adr, p))
-				return (p);
-			if (!pthstr[a])
+			if (is_cmd(info, path))
+				return (path);
+			if (!pathstr[i])
 				break;
-			crr = a;
+			curr_pos = i;
 		}
-		a++;
+		i++;
 	}
 	return (NULL);
 }
